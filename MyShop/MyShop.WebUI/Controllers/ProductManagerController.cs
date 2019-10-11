@@ -12,19 +12,21 @@ namespace MyShop.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         // the following has the property, List<Product> products.
-        ProductRepository context;
+        InMemoryRepository<Product> context;
+        //ProductRepository context;
 
         // newly added following has the property, List<ProductCategory> productCategories
-        ProductCategoryRepository productCategories;
+        InMemoryRepository<ProductCategory> productCategories;
+        //ProductCategoryRepository productCategories;
 
         // initialize the repository, which will call the constructor, ProductRepository()
         public ProductManagerController()
         {
             /* the class, ProductRepository has the property, List<Product> products. */
-            context = new ProductRepository();
+            context = new InMemoryRepository<Product>();
 
             // newly added following has the property, List<ProductCategory> productCategories
-            productCategories = new ProductCategoryRepository();
+            productCategories = new InMemoryRepository<ProductCategory>();
         }
 
         // GET: ProductManager

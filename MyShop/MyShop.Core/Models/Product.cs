@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        public string Id { get; set; }
+        // the following will be removed, since BaseEntity already has it.
+        //public string Id { get; set; }
 
         [StringLength(20)]
         [DisplayName("Product Name")]
@@ -24,10 +25,13 @@ namespace MyShop.Core.Models
         public string Image { get; set; }
 
         // the following is constructor, which will automatically generate product id.
+        // the following will be removed, since BaseEntity already has it.
+        /*
         public Product()
         {
             this.Id = Guid.NewGuid().ToString();
 
         }
+        */
     }
 }
