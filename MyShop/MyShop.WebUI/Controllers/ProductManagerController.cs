@@ -1,4 +1,5 @@
 ﻿using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 using MyShop.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -10,25 +11,45 @@ namespace MyShop.WebUI.Controllers
 {
     public class ProductManagerController : Controller
     {
+        // the following has the property, List<Product> products.
         ProductRepository context;
+
+        // newly added following has the property, List<ProductCategory> productCategories
+        ProductCategoryRepository productCategories;
 
         // initialize the repository, which will call the constructor, ProductRepository()
         public ProductManagerController()
         {
+            /* the class, ProductRepository has the property, List<Product> products. */
             context = new ProductRepository();
+
+            // newly added following has the property, List<ProductCategory> productCategories
+            productCategories = new ProductCategoryRepository();
         }
 
         // GET: ProductManager
         public ActionResult Index()
         {
+            /* method Collection() returns IQueryable<Product>. */
             List<Product> products = context.Collection().ToList();
             return View(products);
         }
 
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            /* newly added class, ProductManagerViewModel has the property
+                    1) Product Product  2) IEnumerable<ProductCategory> ProductCategories */
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+            // the following is refactored.
+            viewModel.Product = new Product();
+
+            /* method Collection() returns IQueryable<ProductCategory>. */
+            viewModel.ProductCategories = productCategories.Collection();
+
+            return View(viewModel);
+            //return View(product);
+
         }
         /* this is overwriting method with the above, Create() 
         we use [HttpPost] when we post & submit a data. */
@@ -60,7 +81,18 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                /* newly added class, ProductManagerViewModel has the property
+                    1) Product Product  2) IEnumerable<ProductCategory> ProductCategories */
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+                // the following is refactored.
+                viewModel.Product = product;
+
+                /* method Collection() returns IQueryable<ProductCategory>. */
+                viewModel.ProductCategories = productCategories.Collection();
+
+                return View(viewModel);
+                //return View(product);
             }
         }
 
