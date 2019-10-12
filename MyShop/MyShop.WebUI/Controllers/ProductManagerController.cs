@@ -1,4 +1,5 @@
 ﻿using MyShop.Core.Models;
+using MyShop.Core.Contracts;
 using MyShop.Core.ViewModels;
 using MyShop.DataAccess.InMemory;
 using System;
@@ -12,21 +13,24 @@ namespace MyShop.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         // the following has the property, List<Product> products.
-        InMemoryRepository<Product> context;
+        IRepository<Product> context;
+        //InMemoryRepository<Product> context;
         //ProductRepository context;
 
         // newly added following has the property, List<ProductCategory> productCategories
-        InMemoryRepository<ProductCategory> productCategories;
+        IRepository<ProductCategory> productCategories;
         //ProductCategoryRepository productCategories;
 
         // initialize the repository, which will call the constructor, ProductRepository()
-        public ProductManagerController()
+        public ProductManagerController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext)
         {
             /* the class, ProductRepository has the property, List<Product> products. */
-            context = new InMemoryRepository<Product>();
+            context = productContext;
+            //context = new InMemoryRepository<Product>();
 
             // newly added following has the property, List<ProductCategory> productCategories
-            productCategories = new InMemoryRepository<ProductCategory>();
+            productCategories = productCategoryContext;
+            //productCategories = new InMemoryRepository<ProductCategory>();
         }
 
         // GET: ProductManager
