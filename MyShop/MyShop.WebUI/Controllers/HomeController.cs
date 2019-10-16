@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyShop.Core.Contracts;
 using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 
 namespace MyShop.WebUI.Controllers
 {
@@ -32,11 +33,34 @@ namespace MyShop.WebUI.Controllers
             //productCategories = new InMemoryRepository<ProductCategory>();
         }
 
-        public ActionResult Index()
+        /* the followiing parameter allows user to choose a category.
+         And null value of Category allows for category not to have any values. */
+        public ActionResult Index(string Category=null)
         {
+            /* create empty list of products */
+            List<Product> products;
             /* method Collection() returns IQueryable<Product>. */
-            List<Product> products = context.Collection().ToList();
-            return View(products);
+            //List<Product> products = context.Collection().ToList();
+
+            List<ProductCategory> categories = productCategories.Collection().ToList();
+
+            if (Category == null)
+            {   /* we display all products */
+                products = context.Collection().ToList();
+            }
+            else
+            {
+                /* we display the products of category that user chosen. */
+                products = context.Collection().Where(p => p.Category == Category).ToList();
+            }
+
+            /* using the following class, ProductListViewModel allows us to combine products with category,
+             since it has both Products and ProductCategories properties. */
+            ProductListViewModel model = new ProductListViewModel();
+            model.Products = products;
+            model.ProductCategories = categories;
+
+            return View(model);
         }
 
         public ActionResult Details(string Id)
