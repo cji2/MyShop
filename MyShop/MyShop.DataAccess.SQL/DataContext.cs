@@ -11,11 +11,12 @@ namespace MyShop.DataAccess.SQL
     public class DataContext : DbContext
     {
         /* DefaultConnection is the name of connectionStrings element of Web.config file on MyShop.WebUI project. */
-        public DataContext()
-            : base("DefaultConnection") {
+        public DataContext() : base("DefaultConnection") {
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
     }
 }
