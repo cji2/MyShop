@@ -18,6 +18,7 @@ namespace MyShop.Core.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
+        public string Specification { get; set; }
 
         [Range(0, 1000)]
         public decimal Price { get; set; }

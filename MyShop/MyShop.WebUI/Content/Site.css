@@ -22,10 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
-.clearfix {
-    clear: both;
-    padding: 0;
-    margin: 0;
-    height: 5px;
-    display: block;
+dt, dd {
+    
+    margin-top: 20px;
 }

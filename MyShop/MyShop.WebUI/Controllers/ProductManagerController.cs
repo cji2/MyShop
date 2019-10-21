@@ -134,6 +134,7 @@ namespace MyShop.WebUI.Controllers
 
                 productToEdit.Name = product.Name;
                 productToEdit.Description = product.Description;
+                productToEdit.Specification = product.Specification;
                 productToEdit.Price = product.Price;
                 productToEdit.Category = product.Category;
                 //productToEdit.Image = product.Image;
