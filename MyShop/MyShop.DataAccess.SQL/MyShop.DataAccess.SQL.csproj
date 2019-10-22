@@ -63,6 +63,14 @@
     <Compile Include="Migrations\201910210123595_AddSpecification.Designer.cs">
       <DependentUpon>201910210123595_AddSpecification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910222009223_AddCustomers.cs" />
+    <Compile Include="Migrations\201910222009223_AddCustomers.Designer.cs">
+      <DependentUpon>201910222009223_AddCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910222030544_AddCustomerCityField.cs" />
+    <Compile Include="Migrations\201910222030544_AddCustomerCityField.Designer.cs">
+      <DependentUpon>201910222030544_AddCustomerCityField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -86,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910210123595_AddSpecification.resx">
       <DependentUpon>201910210123595_AddSpecification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910222009223_AddCustomers.resx">
+      <DependentUpon>201910222009223_AddCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910222030544_AddCustomerCityField.resx">
+      <DependentUpon>201910222030544_AddCustomerCityField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
